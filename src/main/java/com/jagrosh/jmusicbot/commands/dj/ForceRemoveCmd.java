@@ -38,7 +38,7 @@ public class ForceRemoveCmd extends DJCommand
     {
         super(bot);
         this.name = "forceremove";
-        this.help = "removes all entries by a user from the queue";
+        this.help = "Удаляет все записи пользователя из очереди";
         this.arguments = "<user>";
         this.aliases = bot.getConfig().getAliases(this.name);
         this.beListening = false;
@@ -51,14 +51,14 @@ public class ForceRemoveCmd extends DJCommand
     {
         if (event.getArgs().isEmpty())
         {
-            event.replyError("You need to mention a user!");
+            event.replyError("Вам нужно упомянуть пользователя!");
             return;
         }
 
         AudioHandler handler = (AudioHandler) event.getGuild().getAudioManager().getSendingHandler();
         if (handler.getQueue().isEmpty())
         {
-            event.replyError("There is nothing in the queue!");
+            event.replyError("В очереди ничего нет!");
             return;
         }
 
@@ -68,7 +68,7 @@ public class ForceRemoveCmd extends DJCommand
 
         if(found.isEmpty())
         {
-            event.replyError("Unable to find the user!");
+            event.replyError("Не удается найти пользователя!");
             return;
         }
         else if(found.size()>1)
@@ -109,11 +109,11 @@ public class ForceRemoveCmd extends DJCommand
         int count = ((AudioHandler) event.getGuild().getAudioManager().getSendingHandler()).getQueue().removeAll(target.getIdLong());
         if (count == 0)
         {
-            event.replyWarning("**"+target.getName()+"** doesn't have any songs in the queue!");
+            event.replyWarning("**"+target.getName()+"** в очереди нет ни одной песни!");
         }
         else
         {
-            event.replySuccess("Successfully removed `"+count+"` entries from **"+target.getName()+"**#"+target.getDiscriminator()+".");
+            event.replySuccess("Успешно удалены `"+count+"` из **"+target.getName()+"**#"+target.getDiscriminator()+".");
         }
     }
 }
